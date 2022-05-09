@@ -1,7 +1,7 @@
 import { useContext, createContext, useState } from 'react';
 import { getUser, signIn } from '../services/user';
 
-export const userContext = useContext();
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const currentUser = getUser();
