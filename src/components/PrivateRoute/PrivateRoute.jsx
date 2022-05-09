@@ -1,6 +1,6 @@
 import { Route, Redirect, useLocation } from 'react-router-dom';
 
-export default function PrivateRoute() {
+export default function PrivateRoute({ children, ...rest }) {
   const { user } = useUser();
   const location = useLocation();
 
@@ -16,7 +16,6 @@ export default function PrivateRoute() {
         }}
         />
       )}
-
     </Route>
   )
 }
