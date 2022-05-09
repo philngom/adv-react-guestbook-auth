@@ -6,8 +6,8 @@ export default function App() {
       <Route to='/login'>
         <Auth />
       </Route>
-      <PrivateRoute to='/entries'>
-        <Entries />
+      <PrivateRoute to='/dashboard'>
+        <Dashboard />
       </PrivateRoute>
       <Route to='/'>
         <Home />
