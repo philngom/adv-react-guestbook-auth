@@ -8,7 +8,8 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(currentUser || { email: null });
 
   const login = async(email, password) => {
-    const authenticatedUser = await signUp({ email, password });
+    const authenticatedUser = await signIn({ email, password });
+    console.log("🚀 ~ file: UserContext.jsx ~ line 12 ~ login ~ authenticatedUser", authenticatedUser)
 
     if (authenticatedUser) {
       setUser(authenticatedUser);
