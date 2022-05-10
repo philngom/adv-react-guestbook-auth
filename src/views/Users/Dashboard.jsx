@@ -48,9 +48,11 @@ export default function dashboard() {
       </label>
       <button type="submit">Submit entry</button>
     </form>
-    {
-      entries.map((entry) => <p>{entry.content}</p>)
-    }
+    <ul>
+      {
+        entries.map((entry) => <li>{entry.content}</li>)
+      }
+    </ul>
     </>
   )
 }
