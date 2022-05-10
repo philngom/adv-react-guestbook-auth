@@ -50,7 +50,7 @@ export default function dashboard() {
     </form>
     <ul>
       {
-        entries.map((entry) => <li>{entry.content}</li>)
+        entries.map((entry) => <li key={entry.created_at}>{entry.content}</li>)
       }
     </ul>
     </>
