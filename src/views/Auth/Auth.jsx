@@ -1,13 +1,28 @@
 import { useState } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 
 export default function Auth() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useUser();
+  const location = useLocation();
+  const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    try {
+      await login(email, password);
+
+      const url = location.state.origin ? location.state.origin.pathname : '/';
+
+      history.replace(url);
+
+    } catch (error) {
+       setError(error.message)
+    }
   }
 
   return (
@@ -18,6 +33,7 @@ export default function Auth() {
         name="email"
         type="text"
         value={email}
+        placeholder="Email"
         onChange={e => setEmail(e.target.value)}
         />
       </label>
@@ -26,11 +42,13 @@ export default function Auth() {
         <input
         name="password"
         type="password"
+        placeholder="Password"
         value={password}
         onChange={e => setPassword(e.target.value)}
         />
       </label>
       <button>Sign In</button>
+      <p>{error}</p>
     </form>
   )
 }
