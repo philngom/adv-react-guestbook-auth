@@ -7,7 +7,7 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login, signUp } = useUser();
+  const { login } = useUser();
   const location = useLocation();
   const history = useHistory();
 

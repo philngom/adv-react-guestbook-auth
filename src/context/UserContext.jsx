@@ -9,7 +9,6 @@ export const UserProvider = ({ children }) => {
 
   const login = async(email, password) => {
     const authenticatedUser = await signIn({ email, password });
-    console.log("🚀 ~ file: UserContext.jsx ~ line 12 ~ login ~ authenticatedUser", authenticatedUser)
 
     if (authenticatedUser) {
       setUser(authenticatedUser);

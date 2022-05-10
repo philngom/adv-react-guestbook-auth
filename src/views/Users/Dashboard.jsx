@@ -7,7 +7,9 @@ export default function dashboard() {
   const { logout } = useUser();
 
   useEffect(() => {
-    // const fetchEntries =
+    // const fetchEntries = async () => {
+        // const data = await getEntries();
+    // }
   }, []);
 
 
