@@ -1,5 +1,5 @@
 import { useContext, createContext, useState } from 'react';
-import { getUser, signIn } from '../services/user';
+import { getUser, signIn, signUp } from '../services/user';
 
 export const UserContext = createContext();
 
@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(currentUser || { email: null });
 
   const login = async(email, password) => {
-    const authenticatedUser = await signIn({ email, password });
+    const authenticatedUser = await signUp({ email, password });
 
     if (authenticatedUser) {
       setUser(authenticatedUser);
