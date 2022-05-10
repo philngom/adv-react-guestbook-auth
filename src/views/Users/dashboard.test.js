@@ -27,7 +27,5 @@ describe('App', () => {
     userEvent.click(loginButton);
 
     await screen.findByText(/welcome to the dashboard/i);
-
-    screen.debug();
   });
 });
