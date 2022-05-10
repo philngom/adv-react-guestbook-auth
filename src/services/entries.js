@@ -1,10 +1,10 @@
 import { client, parseData } from './client';
 
-export async function createEntry({ email, entry }) {
+export async function createEntry({ userId, entry }) {
   const request = await client
   .from('entries')
   .insert({
-    guest_id: email,
+    guest_id: userId,
     content: entry
   })
 

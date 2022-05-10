@@ -7,14 +7,17 @@ import { useHistory } from 'react-router-dom';
 export default function dashboard() {
   const [entry, setEntry] = useState('');
   const [entries, setEntries] = useState([]);
-  const { logout } = useUser();
+  const { logout, user } = useUser();
   let history = useHistory();
 
   useEffect(() => {
-    // const fetchEntries = async () => {
-        // const data = await getEntries();
-    // }
+    fetchEntries();
   }, []);
+
+  const fetchEntries = async () => {
+      const data = await getEntries();
+      setEntries(data);
+  }
 
   const handleLogout = () => {
     logout();
@@ -22,20 +25,31 @@ export default function dashboard() {
 
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await createEntry({ userId: user.id, entry: user.email + ' ---> ' + entry });
+    setEntry('');
+    await fetchEntries();
+  }
+
 
   return (
     <>
     <h1>Welcome to the dashboard</h1>
+    <h5>Currently logged in as {user.email}</h5>
     <button onClick={handleLogout}>Logout</button>
-    <label>
-      Add an entry:
-      <input
-      value={entry}
-      onChange={e => setEntry(e.target.value)}
-      />
-    </label>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Add an entry:
+        <input
+        value={entry}
+        onChange={e => setEntry(e.target.value)}
+        />
+      </label>
+      <button type="submit">Submit entry</button>
+    </form>
     {
-      entries.map((entry) => <p>{entry.entry}</p>)
+      entries.map((entry) => <p>{entry.content}</p>)
     }
     </>
   )
